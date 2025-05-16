@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 100.0
+var SPEED = 100.0
 const JUMP_VELOCITY = -250.0
 @onready var animated_sprite = $AnimatedSprite2D
 
@@ -28,6 +28,13 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("ui_left", "ui_right")
 	var direction2 = Input.get_axis("ui_up", "ui_down")
+	
+	if direction and direction2:
+		
+		SPEED = sqrt(5000)
+	else:
+		SPEED = 100
+		 
 	if direction:
 		velocity.x = direction * SPEED
 		if direction > 0:
