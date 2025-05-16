@@ -6,7 +6,7 @@ extends Area2D
 func _on_body_entered(body):
 	if body.has_method("isPlayer"):
 		timer.start()
-		print("IM GONNA DIDDLE YOU!!!!!!!!")
+		print("IM GONNA MURDER YOU!!!!!!!!")
 	
 	
 	
