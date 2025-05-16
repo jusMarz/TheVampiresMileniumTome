@@ -8,8 +8,6 @@ var SPEED = 10;
 
 func _process(delta):
 	var distance = sqrt(pow((player.position.y - position.y),2) + pow((player.position.x - position.x),2))
-	if distance > 50:
-		state = State.Idle
 	if distance < 50:
 		state = State.Aggresive
 		
@@ -18,10 +16,7 @@ func _process(delta):
 			var angle = (abs(atan2((-position.y + player.position.y),(-position.x + player.position.x))))
 			position.x += ((-position.x + player.position.x)/abs(position.x - player.position.x)) * delta * 30 * abs(cos(angle)) * SPEED
 			position.y += ((-position.y + player.position.y)/abs(position.y - player.position.y)) * delta * 30 * abs(sin(angle)) * SPEED
-		State.Idle:
-			print("I am idle")
-		_:
-			print("something fugged up :(")
+	
 
 func _on_body_entered(body):
 	print("got coin")
