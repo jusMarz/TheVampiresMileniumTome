@@ -1,20 +1,80 @@
-[gd_scene load_steps=4 format=3 uid="uid://byc7mt2xa3qho"]
+[gd_scene load_steps=16 format=3 uid="uid://byc7mt2xa3qho"]
 
 [ext_resource type="Script" path="res://assets/scripts/player.gd" id="1_t023x"]
 [ext_resource type="SpriteFrames" uid="uid://b2bns7scxkcdo" path="res://assets/scenes/node_2d.tres" id="2_wue3j"]
+[ext_resource type="Texture2D" uid="uid://cr21hurs0fukt" path="res://assets/sprites/Frames/warrior_skill1_frame1.png" id="3_ruw5k"]
+[ext_resource type="Texture2D" uid="uid://dy1g1ub6h0706" path="res://assets/sprites/Frames/warrior_skill1_frame2.png" id="4_wn4ah"]
+[ext_resource type="Texture2D" uid="uid://cn8kyccowiu3r" path="res://assets/sprites/Frames/warrior_skill1_frame3.png" id="5_1milw"]
+[ext_resource type="Texture2D" uid="uid://b14n0m6wc2jx6" path="res://assets/sprites/Frames/warrior_skill1_frame4.png" id="6_fivet"]
+[ext_resource type="Texture2D" uid="uid://v6px0ma87dxr" path="res://assets/sprites/Frames/warrior_skill1_frame5.png" id="7_c18cv"]
+[ext_resource type="Texture2D" uid="uid://ciumueomf5xis" path="res://assets/sprites/Frames/warrior_skill1_frame7.png" id="8_ckt1y"]
+[ext_resource type="Texture2D" uid="uid://b37exfr2a1mms" path="res://assets/sprites/Frames/warrior_skill1_frame8.png" id="9_bvbvy"]
+[ext_resource type="Texture2D" uid="uid://cb2t0csq51q0s" path="res://assets/sprites/Frames/warrior_skill1_frame9.png" id="10_2jdsg"]
+[ext_resource type="Texture2D" uid="uid://dcm7n0g1gvebs" path="res://assets/sprites/Frames/warrior_skill1_frame10.png" id="11_c2ccn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5iknb"]
 radius = 6.0
+
+[sub_resource type="Animation" id="Animation_cn6po"]
+resource_name = "slash"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [null, ExtResource("3_ruw5k"), ExtResource("4_wn4ah"), ExtResource("5_1milw"), ExtResource("6_fivet"), ExtResource("7_c18cv"), ExtResource("8_ckt1y"), ExtResource("9_bvbvy"), ExtResource("10_2jdsg"), ExtResource("11_c2ccn"), null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:slashing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d3e8t"]
+_data = {
+"slash": SubResource("Animation_cn6po")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0rg2"]
+size = Vector2(83, 95.7453)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_t023x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -12)
+position = Vector2(0, -16)
+scale = Vector2(1.15625, 1.07813)
 sprite_frames = ExtResource("2_wue3j")
-animation = &"up"
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
+position = Vector2(0, -11)
 shape = SubResource("CircleShape2D_5iknb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_d3e8t")
+}
+
+[node name="SlashHitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlashHitBox"]
+position = Vector2(-1.02722e-06, 8.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_x0rg2")
