@@ -1,5 +1,6 @@
 extends Area2D
 @onready var player = %Player
+@onready var audio_stream_player_2d = $AudioStreamPlayer2D
 
 enum State {Idle,Aggresive}
 @export var state : State
@@ -16,6 +17,7 @@ func _process(delta):
 			var angle = (abs(atan2((-position.y + player.position.y),(-position.x + player.position.x))))
 			position.x += ((-position.x + player.position.x)/abs(position.x - player.position.x)) * delta * 30 * abs(cos(angle)) * SPEED
 			position.y += ((-position.y + player.position.y)/abs(position.y - player.position.y)) * delta * 30 * abs(sin(angle)) * SPEED
+			audio_stream_player_2d.play()
 	
 
 func _on_body_entered(body):
