@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfusxojwe2xky"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0rg2"]
+size = Vector2(83, 95.7453)
+
+[node name="SlashHitBox" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.02722e-06, 8.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_x0rg2")
