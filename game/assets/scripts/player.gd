@@ -5,6 +5,7 @@ var SPEED = 100.0
 const JUMP_VELOCITY = -250.0
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var animation = $AnimationPlayer
+signal slashes
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -14,15 +15,19 @@ var facing_up: String ="facing_up"
 var facing_left: String ="facing_left"
 var facing_right: String ="facing_right"
 
+
 @export var slashing = false
 
 
 func isPlayer():
 	return true
 	
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("attack"):
-		slash()
+		emit_signal("slashes")
+		print("dwedqw")
+
+
 	
 	
 func _physics_process(delta):
@@ -69,18 +74,3 @@ func _physics_process(delta):
 		
 	move_and_slide()
 	
-func slash():
-	var overlapping_objects = $SlashHitBox.get_overlapping_areas()
-	
-	for area in overlapping_objects:
-		var parent = area.get_parent()
-		print(parent.name)
-			
-
-		
-	slashing = true
-	animation.play("slash")
-
-
-
-
