@@ -21,8 +21,16 @@ func _on_slashes():
 	slash(get_global_mouse_position())
 
 func slash(mousePosition : Vector2):
-	transform.translated_local(mousePosition)
-	transform.rotated_local(get_angle_to(mousePosition))
+	var node_pos = global_position
+	var direction = mousePosition - node_pos
+	var angle = direction.angle()
+
+
+	rotation = angle
+
+	print(angle)
+	#$".".rotate(get_angle_to(mousePosition))
+	#$".".translate(mousePosition)
 	slashing = true
 	animation.play("slash")
 	var overlapping_objects = $SlashHitBox.get_overlapping_areas()
