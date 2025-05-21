@@ -68,6 +68,15 @@ centered = false
 position = Vector2(84, -47)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SlashHitBox"]
-position = Vector2(-36, 48)
+modulate = Color(0, 1, 1, 1)
+self_modulate = Color(1, 0, 1, 1)
+light_mask = 31
+visibility_layer = 31
+position = Vector2(-36, 49)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_mhtks")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.167
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

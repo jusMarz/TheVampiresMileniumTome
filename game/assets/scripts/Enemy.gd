@@ -27,7 +27,7 @@ func get_angle_to_target_node():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if health < 100:
+	if health < 0:
 		state = State.Dead
 	else: if stun_meter:
 		state = State.Stunned
@@ -41,10 +41,10 @@ func _process(delta):
 		
 	match state:
 		State.Dead:
-			print("uh oh")
-			timer.start(2)
+			if timer.is_stopped():
+				print("timer start")
+				timer.start()
 		State.Aggresive:
-			health = health - (5 *delta)
 			if audio_stream_player_2d.playing:
 				audio_stream_player_2d.play()
 			var angle = get_angle_to_target_node()
@@ -61,5 +61,6 @@ func _process(delta):
 
 
 func _on_timer_timeout():
+	print("HEY")
 	queue_free()
 	pass # Replace with function body.
