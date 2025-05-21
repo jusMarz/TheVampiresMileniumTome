@@ -4,7 +4,8 @@ extends CharacterBody2D
 var SPEED = 100.0
 const JUMP_VELOCITY = -250.0
 @onready var animated_sprite = $AnimatedSprite2D
-@onready var animation = $AnimationPlayer
+var spells  = ["Slash"]
+
 signal slashes
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -24,8 +25,9 @@ func isPlayer():
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("attack"):
-		emit_signal("slashes")
-		
+		if spells.has("Slash"):
+			emit_signal("slashes")
+		print("dwedqw")
 
 
 	
