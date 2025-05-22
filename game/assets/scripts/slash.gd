@@ -6,6 +6,7 @@ extends Node2D
 
 signal slashes
 
+var attack_stats = [10,5,10] # [Damage,Stun,Knockback]
 var cooldown = 0;
 
 
@@ -45,6 +46,8 @@ func slash(mousePosition : Vector2):
 		
 			
 
+func get_stats(index):
+	return attack_stats[index]
 
 func _on_timer_timeout():
 	

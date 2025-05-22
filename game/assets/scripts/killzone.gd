@@ -19,8 +19,11 @@ func _on_timer_timeout():
 
 
 func _on_area_entered(area):
-	print(area)
-	diddler.health = diddler.health - 10
-	print(diddler.health)
+	var node = area.get_parent()
+	print(node)
+	if node.has_method("get_stats"):
+		diddler.health = diddler.health - node.get_stats(0)
+		diddler.stun_meter = diddler.stun_meter + node.get_stats(1)
+		diddler.knockback = diddler.stun_meter + node.get_stats(2)
 	
 	pass # Replace with function body.
