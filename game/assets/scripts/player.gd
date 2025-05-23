@@ -4,9 +4,11 @@ extends CharacterBody2D
 var SPEED = 100.0
 const JUMP_VELOCITY = -250.0
 @onready var animated_sprite = $AnimatedSprite2D
-var spells  = ["Slash"]
+var spells  = ["Slash", "Fireball"]
+var selected_Spell = "Slash"
 
 signal slashes
+signal shoots
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -25,12 +27,18 @@ func isPlayer():
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("attack"):
-		if spells.has("Slash"):
+		if selected_Spell == "Slash":
 			emit_signal("slashes")
-		print("dwedqw")
+			print("SLASH")
+		if selected_Spell == "Fireball":
+			emit_signal("shoots")
+			print("SHOOT")
+	if Input.is_action_just_pressed("switch"):
+		selected_Spell = spells[1]
+		print("SWITCHED TO FIREBALL")
+		
 
 
-	
 	
 func _physics_process(delta):
 	# Add the gravity.
