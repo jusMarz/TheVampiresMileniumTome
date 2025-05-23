@@ -75,6 +75,7 @@ visibility_layer = 31
 position = Vector2(-36, 49)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_mhtks")
+disabled = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.167
