@@ -1,0 +1,150 @@
+[gd_scene load_steps=21 format=3 uid="uid://d3xj1rqwc4g06"]
+
+[ext_resource type="Script" path="res://assets/scripts/Enemy.gd" id="1_0q3oi"]
+[ext_resource type="Texture2D" uid="uid://dw3ut1v633pll" path="res://assets/sprites/PC Computer - Koumajou Densetsu Scarlet Symphony - Armored Skeleton White.png" id="2_m1tvw"]
+[ext_resource type="PackedScene" uid="uid://bfvwjfqddctl6" path="res://assets/scenes/killzone.tscn" id="3_v7k3e"]
+[ext_resource type="AudioStream" uid="uid://cpu18et6fmpbd" path="res://assets/music/slendytubbies - tinky winky scream-yt.savetube.me.mp3" id="3_vjxbe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vee4"]
+atlas = ExtResource("2_m1tvw")
+region = Rect2(135, 122, 65, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvtek"]
+atlas = ExtResource("2_m1tvw")
+region = Rect2(372, 126, 88, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fd8q"]
+atlas = ExtResource("2_m1tvw")
+region = Rect2(2, 186, 77, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stgmv"]
+atlas = ExtResource("2_m1tvw")
+region = Rect2(150, 201, 64, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhscb"]
+atlas = ExtResource("2_m1tvw")
+region = Rect2(278, 201, 64, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjmpu"]
+atlas = ExtResource("2_m1tvw")
+region = Rect2(5, 0, 65, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2jg3"]
+atlas = ExtResource("2_m1tvw")
+region = Rect2(135, 0, 65, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72g73"]
+atlas = ExtResource("2_m1tvw")
+region = Rect2(265, 0, 65, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyyxw"]
+atlas = ExtResource("2_m1tvw")
+region = Rect2(5, 61, 65, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bogmp"]
+atlas = ExtResource("2_m1tvw")
+region = Rect2(135, 61, 65, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nidn1"]
+atlas = ExtResource("2_m1tvw")
+region = Rect2(265, 61, 65, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5l1f"]
+atlas = ExtResource("2_m1tvw")
+region = Rect2(395, 61, 65, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xoq0y"]
+atlas = ExtResource("2_m1tvw")
+region = Rect2(5, 122, 65, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qqdx"]
+atlas = ExtResource("2_m1tvw")
+region = Rect2(135, 122, 65, 61)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3khv2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vee4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvtek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fd8q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stgmv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhscb")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjmpu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2jg3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72g73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyyxw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bogmp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nidn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5l1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xoq0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qqdx")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ogoin"]
+size = Vector2(48, 14)
+
+[node name="Diddler" type="Node2D"]
+script = ExtResource("1_0q3oi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(11.2242, -14.2845)
+scale = Vector2(0.516179, 0.468346)
+sprite_frames = SubResource("SpriteFrames_3khv2")
+animation = &"attack"
+autoplay = "attack"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimatedSprite2D"]
+stream = ExtResource("3_vjxbe")
+autoplay = true
+
+[node name="Killzone" parent="." instance=ExtResource("3_v7k3e")]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+light_mask = 0
+visibility_layer = 2
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_ogoin")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.985
+
+[connection signal="area_entered" from="Killzone" to="Killzone" method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
