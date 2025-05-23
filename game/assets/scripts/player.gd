@@ -6,6 +6,8 @@ const JUMP_VELOCITY = -250.0
 @onready var animated_sprite = $AnimatedSprite2D
 var spells  = ["Slash", "Fireball"]
 var selected_Spell = "Slash"
+@export var fireball : PackedScene
+
 
 signal slashes
 signal shoots
@@ -37,7 +39,6 @@ func _process(_delta):
 		selected_Spell = spells[1]
 		print("SWITCHED TO FIREBALL")
 		
-
 
 	
 func _physics_process(delta):
