@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://byc7mt2xa3qho"]
+[gd_scene load_steps=7 format=3 uid="uid://byc7mt2xa3qho"]
 
 [ext_resource type="Script" path="res://assets/scripts/player.gd" id="1_t023x"]
 [ext_resource type="SpriteFrames" uid="uid://b2bns7scxkcdo" path="res://assets/scenes/node_2d.tres" id="2_wue3j"]
 [ext_resource type="PackedScene" uid="uid://ckf472f8msqgt" path="res://assets/scenes/fireball.tscn" id="4_x83ew"]
+[ext_resource type="Script" path="res://assets/scripts/MultiplayerSpawner.gd" id="5_k7cy1"]
 [ext_resource type="PackedScene" uid="uid://ckj6fyot54nf2" path="res://assets/scenes/slash.tscn" id="12_wu12t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5iknb"]
@@ -29,7 +30,10 @@ position = Vector2(-1, 0)
 position = Vector2(0, -11)
 
 [node name="fireball" parent="." instance=ExtResource("4_x83ew")]
-visible = true
 position = Vector2(-1, -13)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("../fireball")
+script = ExtResource("5_k7cy1")
 
 [connection signal="slashes" from="." to="." method="_on_slashes"]
