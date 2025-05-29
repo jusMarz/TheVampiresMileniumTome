@@ -1,13 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://byc7mt2xa3qho"]
+[gd_scene load_steps=9 format=3 uid="uid://byc7mt2xa3qho"]
 
 [ext_resource type="Script" path="res://assets/scripts/player.gd" id="1_t023x"]
 [ext_resource type="SpriteFrames" uid="uid://b2bns7scxkcdo" path="res://assets/scenes/node_2d.tres" id="2_wue3j"]
 [ext_resource type="Script" path="res://assets/scripts/fireball.gd" id="4_yt284"]
 [ext_resource type="Script" path="res://assets/scripts/MultiplayerSpawner.gd" id="5_k7cy1"]
+[ext_resource type="PackedScene" uid="uid://bfvwjfqddctl6" path="res://assets/scenes/Hurtbox.tscn" id="6_a84rx"]
 [ext_resource type="PackedScene" uid="uid://ckj6fyot54nf2" path="res://assets/scenes/slash.tscn" id="12_wu12t"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5iknb"]
-radius = 6.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nglft"]
+radius = 4.0
+height = 12.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhhp0"]
+radius = 7.0
+height = 28.0
 
 [node name="Player" type="CharacterBody2D"]
 slide_on_ceiling = false
@@ -19,15 +25,14 @@ scale = Vector2(1.15625, 1.07813)
 sprite_frames = ExtResource("2_wue3j")
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -11)
-shape = SubResource("CircleShape2D_5iknb")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1, 0)
 
 [node name="Slash" parent="." instance=ExtResource("12_wu12t")]
 position = Vector2(0, -11)
+DAMAGE = 20
+STUN = 0.05
+KNOCKBACK = 7
 
 [node name="fireball" type="Node2D" parent="."]
 position = Vector2(-1, -13)
@@ -36,6 +41,16 @@ script = ExtResource("4_yt284")
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("../fireball")
 script = ExtResource("5_k7cy1")
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -6)
+shape = SubResource("CapsuleShape2D_nglft")
+
+[node name="Hurtbox" parent="." instance=ExtResource("6_a84rx")]
+
+[node name="Hurtbox" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-0.5, -15)
+shape = SubResource("CapsuleShape2D_qhhp0")
 
 [connection signal="slashes" from="." to="." method="_on_slashes"]
 [connection signal="child_entered_tree" from="fireball" to="fireball" method="_on_child_entered_tree"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=104 format=3 uid="uid://d3xj1rqwc4g06"]
+[gd_scene load_steps=106 format=3 uid="uid://d3xj1rqwc4g06"]
 
 [ext_resource type="Script" path="res://assets/scripts/Enemy.gd" id="1_0q3oi"]
 [ext_resource type="Texture2D" uid="uid://cc4aonlkwiyof" path="res://assets/sprites/epic-ezgif.com-gif-to-sprite-converter.png" id="1_gadb5"]
 [ext_resource type="AudioStream" uid="uid://cpu18et6fmpbd" path="res://assets/music/slendytubbies - tinky winky scream-yt.savetube.me.mp3" id="3_vjxbe"]
-[ext_resource type="PackedScene" uid="uid://bfvwjfqddctl6" path="res://assets/scenes/killzone.tscn" id="5_pd1g2"]
+[ext_resource type="PackedScene" uid="uid://ca43m357ea6cs" path="res://assets/scenes/killzone.tscn" id="5_pd1g2"]
+[ext_resource type="Script" path="res://assets/scripts/Hurtbox.gd" id="5_psbsr"]
 [ext_resource type="PackedScene" uid="uid://bits4hoyumw2p" path="res://assets/scenes/hitbox.tscn" id="6_wgc77"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ipgo"]
@@ -691,11 +692,16 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0i1d"]
+size = Vector2(49, 58)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogoin"]
 size = Vector2(48, 14)
 
 [node name="Diddler" type="Node2D"]
 script = ExtResource("1_0q3oi")
+SPEED = 10
+AGGRO_RANGE = 10
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-9.53674e-07, -24)
@@ -709,22 +715,22 @@ frame_progress = 0.0198458
 stream = ExtResource("3_vjxbe")
 autoplay = true
 
-[node name="Killzone" parent="." instance=ExtResource("5_pd1g2")]
-collision_layer = 7
-collision_mask = 7
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.985
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+[node name="Hurtbox" parent="." instance=ExtResource("5_pd1g2")]
+script = ExtResource("5_psbsr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -23)
+shape = SubResource("RectangleShape2D_e0i1d")
+
+[node name="Hitbox" parent="." instance=ExtResource("6_wgc77")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 light_mask = 0
 visibility_layer = 2
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_ogoin")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 1.985
-
-[node name="Hurtbox" parent="." instance=ExtResource("5_pd1g2")]
-
-[node name="Hitbox" parent="." instance=ExtResource("6_wgc77")]
-
-[connection signal="area_entered" from="Killzone" to="Killzone" method="_on_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
