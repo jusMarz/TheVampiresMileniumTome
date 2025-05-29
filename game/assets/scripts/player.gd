@@ -1,11 +1,14 @@
 extends CharacterBody2D 
 
-
-var SPEED = 100.0
 const JUMP_VELOCITY = -250.0
 @onready var animated_sprite = $AnimatedSprite2D
 var spells  = ["Slash", "Fireball"]
 var selected_Spell = "Slash"
+
+@export var SPEED = 100.0
+@export var health = 100
+@export var stun_meter = 0;
+@export var knockback = 0;
 
 signal slashes
 signal shoots

@@ -4,16 +4,16 @@ extends Node2D
 #enemy stats
 
 @onready var audio_stream_player_2d = $AnimatedSprite2D/AudioStreamPlayer2D
-@onready var player = get_node("/root/Game/Player")
+@onready var player = %Player
 
 @export var health = 100
-var SPEED = 80
+@export var SPEED = 80
 enum State {Idle,Aggresive,Stunned,Dead}
 var stun_meter = 0;
 var knockback = 0;
 @export var state : State
-var AGGRO_MIN = 100;
-var AGGRO_RANGE = 100
+@export var AGGRO_MIN = 100;
+@export var AGGRO_RANGE = 100
 
 
 # Called when the node enters the scene tree for the first time.
