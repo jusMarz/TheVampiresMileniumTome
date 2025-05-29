@@ -1,10 +1,9 @@
-[gd_scene load_steps=105 format=3 uid="uid://d3xj1rqwc4g06"]
+[gd_scene load_steps=104 format=3 uid="uid://d3xj1rqwc4g06"]
 
 [ext_resource type="Script" path="res://assets/scripts/Enemy.gd" id="1_0q3oi"]
 [ext_resource type="Texture2D" uid="uid://cc4aonlkwiyof" path="res://assets/sprites/epic-ezgif.com-gif-to-sprite-converter.png" id="1_gadb5"]
-[ext_resource type="PackedScene" uid="uid://bfvwjfqddctl6" path="res://assets/scenes/killzone.tscn" id="3_v7k3e"]
 [ext_resource type="AudioStream" uid="uid://cpu18et6fmpbd" path="res://assets/music/slendytubbies - tinky winky scream-yt.savetube.me.mp3" id="3_vjxbe"]
-[ext_resource type="PackedScene" uid="uid://bfvwjfqddctl6" path="res://assets/scenes/Hurtbox.tscn" id="5_pd1g2"]
+[ext_resource type="PackedScene" uid="uid://bfvwjfqddctl6" path="res://assets/scenes/killzone.tscn" id="5_pd1g2"]
 [ext_resource type="PackedScene" uid="uid://bits4hoyumw2p" path="res://assets/scenes/hitbox.tscn" id="6_wgc77"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ipgo"]
@@ -710,7 +709,7 @@ frame_progress = 0.0198458
 stream = ExtResource("3_vjxbe")
 autoplay = true
 
-[node name="Killzone" parent="." instance=ExtResource("3_v7k3e")]
+[node name="Killzone" parent="." instance=ExtResource("5_pd1g2")]
 collision_layer = 7
 collision_mask = 7
 

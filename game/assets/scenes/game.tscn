@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b42s3fbj1ftwn" path="res://assets/scenes/coin.tscn" id="4_lqmm2"]
 [ext_resource type="PackedScene" uid="uid://cacnl41ok7hlq" path="res://assets/scenes/spawning_area.tscn" id="6_2tijx"]
 [ext_resource type="PackedScene" uid="uid://d3xj1rqwc4g06" path="res://assets/scenes/diddler.tscn" id="6_oygqr"]
-[ext_resource type="Script" path="res://assets/scenes/CollisionShape2D2.gd" id="7_lf08g"]
+[ext_resource type="Script" path="res://assets/scripts/CollisionShape2D2.gd" id="7_lf08g"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_phhyc"]
 
