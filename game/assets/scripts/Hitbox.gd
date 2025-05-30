@@ -1,9 +1,13 @@
 extends Area2D
 
 @onready var diddler = $".."
+@export var ALIGNMENT: String
+@export var DAMAGE = 99
+@export var STUN  = 0.00
+@export var KNOCKBACK = 1
 
-func _on_body_entered(body):
-	print (body)
-	if body.has_method("isPlayer"):
-		print("getting frewaky")
 pass
+
+func get_stats(index):
+	var attack_stats = [DAMAGE,STUN,KNOCKBACK] 
+	return attack_stats[index]

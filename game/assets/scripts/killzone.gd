@@ -15,7 +15,7 @@ pass
 
 
 func _on_timer_timeout():
-	get_tree().reload_current_scene()
+	#get_tree().reload_current_scene()
 
 
 func _on_area_entered(area):

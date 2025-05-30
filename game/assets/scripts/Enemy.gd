@@ -4,7 +4,7 @@ extends Node2D
 #enemy stats
 
 @onready var audio_stream_player_2d = $AnimatedSprite2D/AudioStreamPlayer2D
-@onready var player = %Player
+@onready var player = get_node("/root/Game/Player")
 
 @export var health = 100
 @export var SPEED = 80
