@@ -2,5 +2,7 @@
 
 [ext_resource type="Script" path="res://assets/scripts/Hitbox.gd" id="1_feisc"]
 
-[node name="Hitbox" type="Area2D"]
+[node name="hitbox" type="Area2D"]
 script = ExtResource("1_feisc")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
