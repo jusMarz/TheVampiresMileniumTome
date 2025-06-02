@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://b2bns7scxkcdo" path="res://assets/scenes/node_2d.tres" id="2_wue3j"]
 [ext_resource type="Script" path="res://assets/scripts/fireball.gd" id="4_yt284"]
 [ext_resource type="Script" path="res://assets/scripts/MultiplayerSpawner.gd" id="5_k7cy1"]
-[ext_resource type="PackedScene" uid="uid://bfvwjfqddctl6" path="res://assets/scenes/Hurtbox.tscn" id="6_a84rx"]
+[ext_resource type="PackedScene" uid="uid://bfvwjfqddctl6" path="res://assets/scenes/killzone.tscn" id="6_a84rx"]
 [ext_resource type="PackedScene" uid="uid://ckj6fyot54nf2" path="res://assets/scenes/slash.tscn" id="12_wu12t"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nglft"]
