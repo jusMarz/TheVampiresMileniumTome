@@ -8,7 +8,6 @@ signal slashes
 @export var DAMAGE = 99
 @export var STUN  = 0.00
 @export var KNOCKBACK = 1
-
 var cooldown = 0;
 
 
