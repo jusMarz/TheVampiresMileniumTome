@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var timer = $Timer
+@onready var hitbox = $hitbox
 @onready var collision_shape_2d = $SlashHitBox/CollisionShape2D
 @onready var animation = $AnimationPlayer
 
@@ -9,6 +10,7 @@ signal slashes
 @export var STUN  = 0.00
 @export var KNOCKBACK = 1
 var cooldown = 0;
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -47,10 +49,12 @@ func slash(mousePosition : Vector2):
 		
 			
 
-func get_stats(index):
+func give_stats():
 	var attack_stats = [DAMAGE,STUN,KNOCKBACK] 
-	return attack_stats[index]
+	return attack_stats
+
 
 func _on_timer_timeout():
 	collision_shape_2d.set("disabled",true)
 	pass # Replace with function body.
+
