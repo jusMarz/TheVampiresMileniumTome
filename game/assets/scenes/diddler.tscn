@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://assets/scripts/Enemy.gd" id="1_0q3oi"]
 [ext_resource type="Texture2D" uid="uid://cc4aonlkwiyof" path="res://assets/sprites/epic-ezgif.com-gif-to-sprite-converter.png" id="1_gadb5"]
 [ext_resource type="AudioStream" uid="uid://cpu18et6fmpbd" path="res://assets/music/slendytubbies - tinky winky scream-yt.savetube.me.mp3" id="3_vjxbe"]
-[ext_resource type="PackedScene" uid="uid://bfvwjfqddctl6" path="res://assets/scenes/hurtbox.tscn" id="5_sdjan"]
+[ext_resource type="PackedScene" uid="uid://bfvwjfqddctl6" path="res://assets/scenes/killzone.tscn" id="5_sdjan"]
 [ext_resource type="PackedScene" uid="uid://bits4hoyumw2p" path="res://assets/scenes/hitbox.tscn" id="6_wgc77"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ipgo"]
