@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://byc7mt2xa3qho"]
 
 [ext_resource type="Script" path="res://assets/scripts/player.gd" id="1_t023x"]
+[ext_resource type="PackedScene" uid="uid://d2g1xej3ju72g" path="res://assets/scenes/fireball.tscn" id="2_reeqi"]
 [ext_resource type="SpriteFrames" uid="uid://b2bns7scxkcdo" path="res://assets/scenes/node_2d.tres" id="2_wue3j"]
-[ext_resource type="Script" path="res://assets/scripts/fireball.gd" id="4_yt284"]
 [ext_resource type="Script" path="res://assets/scripts/MultiplayerSpawner.gd" id="5_k7cy1"]
-[ext_resource type="PackedScene" uid="uid://bfvwjfqddctl6" path="res://assets/scenes/killzone.tscn" id="6_a84rx"]
+[ext_resource type="PackedScene" uid="uid://bfvwjfqddctl6" path="res://assets/scenes/Hurtbox.tscn" id="6_a84rx"]
 [ext_resource type="PackedScene" uid="uid://ckj6fyot54nf2" path="res://assets/scenes/slash.tscn" id="12_wu12t"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nglft"]
@@ -18,6 +18,7 @@ height = 28.0
 [node name="Player" type="CharacterBody2D"]
 slide_on_ceiling = false
 script = ExtResource("1_t023x")
+fireball = ExtResource("2_reeqi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
@@ -34,12 +35,7 @@ DAMAGE = 20
 STUN = 0.05
 KNOCKBACK = 7
 
-[node name="fireball" type="Node2D" parent="."]
-position = Vector2(-1, -13)
-script = ExtResource("4_yt284")
-
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-spawn_path = NodePath("../fireball")
 script = ExtResource("5_k7cy1")
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
@@ -52,5 +48,7 @@ shape = SubResource("CapsuleShape2D_nglft")
 position = Vector2(-0.5, -15)
 shape = SubResource("CapsuleShape2D_qhhp0")
 
+[node name="spellbook" type="Marker2D" parent="."]
+position = Vector2(0, -14)
+
 [connection signal="slashes" from="." to="." method="_on_slashes"]
-[connection signal="child_entered_tree" from="fireball" to="fireball" method="_on_child_entered_tree"]
