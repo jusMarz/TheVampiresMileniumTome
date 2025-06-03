@@ -1,17 +1,24 @@
 extends Area2D
 
 @onready var player = $"."
-var speed = 10
+@export var speed = 5
 var angle =0
 var shooting = true
 signal shoots
+@export var DAMAGE = 99
+@export var STUN  = 0.00
+@export var KNOCKBACK = 1
+@onready var collisionbox = $collisionbox
+
 # Called when the node enters the scene tree for the first time.
 
 func _physics_process(delta):
-	print(shooting)
+
 	if shooting:
 		print(angle)
 		angle = get_angle_to_target_node()
+		position.x += delta * 200 * cos(angle) * speed
+		position.y += delta * 200 * sin(angle) * speed
 		shooting= false
 
 	position.x += delta * 30 * cos(angle) * speed
@@ -38,12 +45,34 @@ func _process(delta):
 	pass
 
 
+
 func _on_body_entered(body):
 	var bodies = get_overlapping_bodies()
 	var count = 0
+	var playerColide = false
+	for things in bodies:
+		print(things)
+		if things.to_string().contains("Player"):
+			print("hit player")
+			playerColide = true
+		if things.to_string().contains("TileMap"):
+			print("delete ball")
+			print(bodies.size())
+			queue_free()
+	pass # Replace with function body.
+	
 
-	if bodies.size() != 1:
-		print(bodies.size())
-		queue_free()
+func give_stats():
+	var attack_stats = [DAMAGE,STUN,KNOCKBACK] 
+	return attack_stats
 
+
+func _on_area_entered(area):
+	print("touched area")
+	var areas = get_overlapping_areas()
+	for things in areas:
+		if things.get_parent().to_string().contains("Diddler"):
+			queue_free()
+		
+		print(things.get_parent())
 	pass # Replace with function body.

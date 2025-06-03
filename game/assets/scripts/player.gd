@@ -35,9 +35,11 @@ func _process(_delta):
 			emit_signal("slashes")
 			print("SLASH")
 		if selected_Spell == "Fireball":
+			
 			shoot()
 			emit_signal("shoots")
 			print("SHOOT")
+			
 	if Input.is_action_just_pressed("switch"):
 		if selected_Spell == spells[1]:
 			selected_Spell = spells[0]
@@ -51,7 +53,7 @@ func _process(_delta):
 func shoot():
 	var f = fireball.instantiate()
 	owner.add_child(f)
-	f.transform = $spellbook.global_transform
+	f.transform = $Node2D.global_transform
 	
 	
 func _physics_process(delta):
