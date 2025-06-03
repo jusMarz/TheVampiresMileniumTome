@@ -8,7 +8,7 @@ extends Node2D
 
 @export var health = 100
 @export var SPEED = 80
-enum State {Idle,Aggresive,Stunned,Dead}
+enum State {Idle,Aggresive,Stunned,Dead,Attacking}
 var stun_meter = 0;
 var knockback = 0;
 @export var state : State
@@ -43,11 +43,12 @@ func _process(delta):
 			if distance > AGGRO_MIN + AGGRO_RANGE:
 				state = State.Idle
 			else: if distance < AGGRO_MIN:
-				state = State.Aggresive
-				if distance < 50:
-					$AnimatedSprite2D.play("attack")
+				if distance < 35:
+					state = State.Attacking
+					$AnimationPlayer.play("attack")
 				else:
-					$AnimatedSprite2D.play("chasing")
+					$AnimationPlayer.queue("chasing")
+					state = State.Aggresive
 	
 		
 	match state:
