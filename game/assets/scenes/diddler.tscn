@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d3xj1rqwc4g06"]
+[gd_scene load_steps=26 format=3 uid="uid://d3xj1rqwc4g06"]
 
 [ext_resource type="Script" path="res://assets/scripts/Enemy.gd" id="1_0q3oi"]
 [ext_resource type="Texture2D" uid="uid://bubbpj8wwd35h" path="res://assets/sprites/PC Computer - Koumajou Densetsu Scarlet Symphony - Armored Skeleton White.png" id="2_wpm3d"]
@@ -86,7 +86,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3ktwo")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 5.0
 }, {
@@ -118,7 +118,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_c6vge")
 }],
-"loop": true,
+"loop": false,
 "name": &"chasing",
 "speed": 5.0
 }]
@@ -126,17 +126,95 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e0i1d"]
 size = Vector2(49, 58)
 
+[sub_resource type="Animation" id="Animation_vexdt"]
+resource_name = "attack"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_i3ybx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_drohs"]
+resource_name = "chasing"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"chasing"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tw6ox"]
+_data = {
+"RESET": SubResource("Animation_i3ybx"),
+"attack": SubResource("Animation_vexdt"),
+"chasing": SubResource("Animation_drohs")
+}
+
 [node name="Diddler" type="Node2D"]
 script = ExtResource("1_0q3oi")
 SPEED = 60
 AGGRO_RANGE = 10
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(14.5462, -11.2845)
+position = Vector2(0, -1)
 scale = Vector2(0.421616, 0.566706)
 sprite_frames = SubResource("SpriteFrames_3khv2")
 animation = &"chasing"
-frame_progress = 0.765507
+frame = 1
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimatedSprite2D"]
 stream = ExtResource("3_vjxbe")
@@ -150,5 +228,10 @@ wait_time = 1.985
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, -23)
 shape = SubResource("RectangleShape2D_e0i1d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tw6ox")
+}
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
