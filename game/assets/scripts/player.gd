@@ -4,6 +4,7 @@ const JUMP_VELOCITY = -250.0
 @onready var animated_sprite = $AnimatedSprite2D
 var spells  = ["Slash", "Fireball"]
 var selected_Spell = "Slash"
+@export var fireball : PackedScene
 
 @export var SPEED = 100.0
 @export var health = 100
@@ -34,14 +35,24 @@ func _process(_delta):
 			emit_signal("slashes")
 			print("SLASH")
 		if selected_Spell == "Fireball":
+			shoot()
 			emit_signal("shoots")
 			print("SHOOT")
 	if Input.is_action_just_pressed("switch"):
-		selected_Spell = spells[1]
-		print("SWITCHED TO FIREBALL")
-		
+		if selected_Spell == spells[1]:
+			selected_Spell = spells[0]
+			print("SWITCHED TO SLASH")
+		if selected_Spell == spells[0]:
+			selected_Spell = spells[1]
+			print("SWITCHED TO FIREBALL")
 
 
+
+func shoot():
+	var f = fireball.instantiate()
+	owner.add_child(f)
+	f.transform = $spellbook.global_transform
+	
 	
 func _physics_process(delta):
 	# Add the gravity.
