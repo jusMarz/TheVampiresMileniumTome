@@ -3,6 +3,7 @@ extends Node2D
 
 #enemy stats
 
+@onready var animation_player = $AnimationPlayer
 @onready var audio_stream_player_2d = $AnimatedSprite2D/AudioStreamPlayer2D
 @onready var player = get_node("/root/Game/Player")
 
@@ -41,14 +42,15 @@ func _process(delta):
 			state = State.Stunned
 		else: 
 			if distance > AGGRO_MIN + AGGRO_RANGE:
-				state = State.Idle
+				if state != State.Attacking:
+					state = State.Idle
 			else: if distance < AGGRO_MIN:
 				if distance < 35:
 					state = State.Attacking
-					$AnimationPlayer.play("attack")
 				else:
-					$AnimationPlayer.queue("chasing")
-					state = State.Aggresive
+					if state != State.Attacking:
+						$AnimationPlayer.queue("chasing")
+						state = State.Aggresive
 	
 		
 	match state:
@@ -67,6 +69,13 @@ func _process(delta):
 			stun_meter -= 1 * delta
 			if stun_meter < 0:
 				stun_meter = 0;
+		State.Attacking:
+			if animation_player.current_animation != "attack":
+				animation_player.stop()
+				animation_player.play("attack")
+			print(animation_player.current_animation_position)
+			if (animation_player.current_animation == "attack") && (animation_player.current_animation_position > .9):
+				state =  State.Idle
 		_:
 			pass
 
