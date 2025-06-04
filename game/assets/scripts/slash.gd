@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var timer = $Timer
-@onready var hitbox = $hitbox
 @onready var collision_shape_2d = $SlashHitBox/CollisionShape2D
 @onready var animation = $AnimationPlayer
 
@@ -50,7 +49,7 @@ func slash(mousePosition : Vector2):
 			
 
 func give_stats():
-	var attack_stats = [DAMAGE,STUN,KNOCKBACK] 
+	var attack_stats = [DAMAGE,STUN,KNOCKBACK,"Good"] 
 	return attack_stats
 
 
