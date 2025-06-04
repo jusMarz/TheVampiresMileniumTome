@@ -35,18 +35,20 @@ func _process(_delta):
 			emit_signal("slashes")
 			print("SLASH")
 		if selected_Spell == "Fireball":
-			
 			shoot()
 			emit_signal("shoots")
 			print("SHOOT")
 			
 	if Input.is_action_just_pressed("switch"):
-		if selected_Spell == spells[1]:
+		var alreadySwitched = false
+		if selected_Spell == spells[1] and !alreadySwitched:
 			selected_Spell = spells[0]
 			print("SWITCHED TO SLASH")
-		if selected_Spell == spells[0]:
+			alreadySwitched = true
+		if selected_Spell == spells[0] and !alreadySwitched:
 			selected_Spell = spells[1]
 			print("SWITCHED TO FIREBALL")
+			alreadySwitched = true
 
 
 
@@ -67,8 +69,8 @@ func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
-	var direction2 = Input.get_axis("ui_up", "ui_down")
+	var direction = Input.get_axis("a", "d")
+	var direction2 = Input.get_axis("w", "s")
 
 	
 	if direction and direction2:
