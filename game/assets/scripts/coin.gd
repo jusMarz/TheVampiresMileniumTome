@@ -7,6 +7,7 @@ extends Area2D
 
 var chase = false
 var speed = 3.5
+signal increaseExp
 
 func get_angle_to_target_node():
 	return (abs(atan2((-position.y + player.position.y),(-position.x + player.position.x))))
@@ -17,6 +18,7 @@ func _process(delta):
 	if distance < 50:
 		chase = true
 	if distance < 5:
+			emit_signal("increaseExp")
 			queue_free()
 			
 	if chase:

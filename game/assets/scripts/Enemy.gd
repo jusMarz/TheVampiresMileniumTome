@@ -16,6 +16,7 @@ var knockback = 0;
 @export var AGGRO_MIN = 100;
 @export var AGGRO_RANGE = 100
 
+@export var coin : PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -58,6 +59,7 @@ func _process(delta):
 			if timer.is_stopped():
 				print("timer start")
 				timer.start()
+				spawnCoins()
 		State.Aggresive:
 			if audio_stream_player_2d.playing:
 				audio_stream_player_2d.play()
@@ -79,7 +81,13 @@ func _process(delta):
 		_:
 			pass
 
-
+func spawnCoins():
+	pass
+	#var c = coin.instantiate()
+	#owner.add_child(c)
+	##c.transform = $Node2D.global_transform
+	
+	
 func _on_timer_timeout():
 	print("HEY")
 	queue_free()
