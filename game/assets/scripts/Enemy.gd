@@ -9,29 +9,28 @@ extends Node2D
 
 @export var health = 100
 @export var SPEED = 80
-enum State {Idle,Aggresive,Stunned,Dead,Attacking}
+enum State {IDLE,AGGRESIVE,STUNNED,DEAD,ATTACKING}
 var stun_meter = 0;
 var knockback = 0;
 @export var state : State
 @export var AGGRO_MIN = 100;
 @export var AGGRO_RANGE = 100
 
-@export var coin : PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 #Used to get the angle to the player
-func getangleto(thing):
+func get_angle_toward(thing):
 	return (atan2((-position.y + thing.position.y),(-position.x + thing.position.x)))
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var distance = sqrt(pow((player.position.y - position.y),2) + pow((player.position.x - position.x),2))
-	var angle = getangleto(player)
+	var angle = get_angle_toward(player)
 	if health <= 0:
-		state = State.Dead
+		state = State.DEAD
 	else:
 		if knockback < 0:
 			knockback = 0
@@ -40,55 +39,45 @@ func _process(delta):
 			position.y += delta * 30 * -(sin(angle)) * knockback
 			knockback = knockback - 30 * delta
 		if stun_meter:
-			state = State.Stunned
+			state = State.STUNNED
 		else: 
 			if distance > AGGRO_MIN + AGGRO_RANGE:
-				if state != State.Attacking:
-					state = State.Idle
+				if state != State.ATTACKING:
+					state = State.IDLE
 			else: if distance < AGGRO_MIN:
 				if distance < 35:
-					state = State.Attacking
+					state = State.ATTACKING
 				else:
-					if state != State.Attacking:
+					if state != State.ATTACKING:
 						$AnimationPlayer.queue("chasing")
-						state = State.Aggresive
+						state = State.AGGRESIVE
 	
 		
 	match state:
-		State.Dead:
+		State.DEAD:
 			if timer.is_stopped():
-				print("timer start")
 				timer.start()
-				spawnCoins()
-		State.Aggresive:
+		State.AGGRESIVE:
 			if audio_stream_player_2d.playing:
 				audio_stream_player_2d.play()
 			position.x += delta * (cos(angle)) * SPEED
 			position.y += delta * (sin(angle)) * SPEED
-		State.Idle:
+		State.IDLE:
 			audio_stream_player_2d.stop()
-		State.Stunned:
+		State.STUNNED:
 			stun_meter -= 1 * delta
 			if stun_meter < 0:
 				stun_meter = 0;
-		State.Attacking:
+		State.ATTACKING:
 			if animation_player.current_animation != "attack":
 				animation_player.stop()
 				animation_player.play("attack")
-			print(animation_player.current_animation_position)
 			if (animation_player.current_animation == "attack") && (animation_player.current_animation_position > .9):
-				state =  State.Idle
+				state =  State.IDLE
 		_:
 			pass
 
-func spawnCoins():
-	pass
-	#var c = coin.instantiate()
-	#owner.add_child(c)
-	##c.transform = $Node2D.global_transform
-	
-	
+
 func _on_timer_timeout():
-	print("HEY")
 	queue_free()
 	pass # Replace with function body.
