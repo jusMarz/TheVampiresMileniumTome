@@ -2,14 +2,18 @@ extends CharacterBody2D
 
 const JUMP_VELOCITY = -250.0
 @onready var animated_sprite = $AnimatedSprite2D
+
+
 var spells  = ["Slash", "Fireball"]
-var selected_Spell = "Slash"
+var selected_Spell = 0
 @export var fireball : PackedScene
 
-@export var SPEED = 100.0
+@export var speed = 100.0
+@export var speed_mult = 1
 @export var health = 100
-@export var stun_meter = 0;
-@export var knockback = 0;
+@export var stun_meter = 0
+@export var knockback = 0
+@export var level = 1
 
 signal slashes
 signal shoots
@@ -25,30 +29,39 @@ var facing_right: String ="facing_right"
 
 @export var slashing = false
 
+func _ready():
+	$Camera2D/ExpBar.connect("increaseLevel", _on_increaseLevel)
+	
+	
+func _on_increaseLevel():
+	print("SPEED UP")
+	speed_mult+=.5
+	level+=1
 
+	
+	
 func isPlayer():
 	return true
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("attack"):
-		if selected_Spell == "Slash":
+		if spells[selected_Spell] == "Slash":
 			emit_signal("slashes")
 			print("SLASH")
-		if selected_Spell == "Fireball":
+		if spells[selected_Spell] == "Fireball":
 			shoot()
 			emit_signal("shoots")
 			print("SHOOT")
+		if spells[selected_Spell] == "Slowdown":
+			shoot()
+			emit_signal("Slowdown")
+			print("SLOWDOWN")
 			
 	if Input.is_action_just_pressed("switch"):
 		var alreadySwitched = false
-		if selected_Spell == spells[1] and !alreadySwitched:
-			selected_Spell = spells[0]
-			print("SWITCHED TO SLASH")
-			alreadySwitched = true
-		if selected_Spell == spells[0] and !alreadySwitched:
-			selected_Spell = spells[1]
-			print("SWITCHED TO FIREBALL")
-			alreadySwitched = true
+		selected_Spell+=1
+		if(selected_Spell>spells.size()-1):
+			selected_Spell=1
 
 
 
@@ -74,12 +87,13 @@ func _physics_process(delta):
 
 	
 	if direction and direction2:
-		SPEED = sqrt(5000)
+		speed = sqrt(5000)
 	else:
-		SPEED = 100
+		speed = 100
 		 
+	speed*=speed_mult
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = direction * speed
 		if direction > 0:
 			animated_sprite.play("right")
 			
@@ -87,9 +101,9 @@ func _physics_process(delta):
 			animated_sprite.play("left")
 				
 	else:
-		velocity.x = move_toward(velocity.x, 0 , SPEED)
+		velocity.x = move_toward(velocity.x, 0 , speed)
 	if direction2:
-		velocity.y = direction2 * SPEED
+		velocity.y = direction2 * speed
 		if direction2 <0:
 			animated_sprite.play("up")
 			
@@ -98,7 +112,7 @@ func _physics_process(delta):
 
 		
 	else:
-		velocity.y = move_toward(velocity.x, 0, SPEED)
+		velocity.y = move_toward(velocity.x, 0, speed)
 		
 	move_and_slide()
 	

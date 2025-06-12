@@ -1,15 +1,20 @@
 extends ProgressBar
 
-
+@onready var diddler = $"../../../Diddler"
+signal increaseLevel 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$"../../../Coin".connect("increaseExp", _on_increaseExp)
+	$"../../../Diddler".connect("getExperience", _on_increaseExp)
 
 func _on_increaseExp():
-	value+=15
-	
+	value+=115
+	print("INCREASE EXP")
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if value>=100:
+		emit_signal("increaseLevel")
+		value-=100
+	print(value)
 	pass
