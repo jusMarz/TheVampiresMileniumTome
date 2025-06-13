@@ -30,8 +30,8 @@ var facing_right: String ="facing_right"
 @export var slashing = false
 
 func _ready():
-	$Camera2D/ExpBar.connect("increaseLevel", _on_increaseLevel)
-	
+	#$Camera2D/ExpBar.connect("increaseLevel", _on_increaseLevel)
+	pass
 	
 func _on_increaseLevel():
 	print("SPEED UP")
@@ -61,7 +61,7 @@ func _process(_delta):
 		var alreadySwitched = false
 		selected_Spell+=1
 		if(selected_Spell>spells.size()-1):
-			selected_Spell=1
+			selected_Spell=0
 
 
 
