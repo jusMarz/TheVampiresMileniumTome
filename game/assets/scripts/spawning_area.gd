@@ -31,13 +31,19 @@ func _process(delta):
 
 
 func _on_body_entered(body):
+	var amount = 1
+	var temp = amount
 	if(body.has_method("isPlayer")):
 		print("enter")
 		if(entered==false):
 			spawn()
 			entered = true
 		while(entered):
-			spawn()
-			await get_tree().create_timer(1).timeout
+			await get_tree().create_timer(10).timeout
+			while(temp>0):
+				spawn()
+				temp = temp - 1
+			amount = amount + 1
+			temp = amount
 	
  # Replace with function body.
