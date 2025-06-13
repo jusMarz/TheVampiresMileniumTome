@@ -11,7 +11,15 @@ func _ready():
 
 func spawn():
 	var obj = spawn_object.instantiate()
-	obj.position = Vector2(-200,125)
+	var random = randi_range(1,4)
+	if random == 1:
+		obj.position = Vector2(200,-150)
+	else: if random == 2:
+		obj.position = Vector2(-150,150)
+	else: if random == 3:
+		obj.position = Vector2(-150,-150)
+	else: if random == 4:
+		obj.position = Vector2(200,125)
 	get_tree().root.add_child(obj)
 
 
@@ -30,6 +38,6 @@ func _on_body_entered(body):
 			entered = true
 		while(entered):
 			spawn()
-			await get_tree().create_timer(5).timeout
+			await get_tree().create_timer(1).timeout
 	
  # Replace with function body.
