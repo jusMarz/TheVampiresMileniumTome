@@ -69,6 +69,7 @@ func _process(delta):
 			position.y += delta * (sin(angle)) * SPEED
 		State.Idle:
 			audio_stream_player_2d.stop()
+			animation_player.play("chasing")
 		State.Stunned:
 			stun_meter -= 1 * delta
 			if stun_meter < 0:
@@ -77,7 +78,7 @@ func _process(delta):
 			if animation_player.current_animation != "attack":
 				animation_player.stop()
 				animation_player.play("attack")
-			print(animation_player.current_animation_position)
+			#print(animation_player.current_animation_position)
 			if (animation_player.current_animation == "attack") && (animation_player.current_animation_position > .9):
 				state =  State.Idle
 		_:
