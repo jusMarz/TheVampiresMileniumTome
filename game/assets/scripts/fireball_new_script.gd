@@ -9,7 +9,7 @@ signal shoots
 @export var DAMAGE = 99
 @export var STUN  = 0.00
 @export var KNOCKBACK = 1
-@onready var collisionbox = $collisionbox
+
 
 # Called when the node enters the scene tree for the first time.
 
@@ -67,7 +67,7 @@ func _on_area_2d_body_entered(body):
 	
 
 func give_stats():
-	var attack_stats = [DAMAGE,STUN,KNOCKBACK,"Good"] 
+	var attack_stats = [DAMAGE,STUN,KNOCKBACK,"GOOD"] 
 	return attack_stats
 
 

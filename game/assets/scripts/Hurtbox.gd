@@ -5,6 +5,7 @@ extends Area2D
 
 
 func _on_area_entered(area):
+	print (str(parent)+"this is the parent " + str(area))
 	var attack = area.get_parent()
 	if ((attack.has_method("give_stats"))):
 		var stats = attack.give_stats()

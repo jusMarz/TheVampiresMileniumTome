@@ -1,9 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://d3xj1rqwc4g06"]
+[gd_scene load_steps=28 format=3 uid="uid://d3xj1rqwc4g06"]
 
 [ext_resource type="Script" path="res://assets/scripts/Enemy.gd" id="1_0q3oi"]
-[ext_resource type="Texture2D" uid="uid://bubbpj8wwd35h" path="res://assets/sprites/PC Computer - Koumajou Densetsu Scarlet Symphony - Armored Skeleton White.png" id="2_wpm3d"]
+[ext_resource type="Texture2D" uid="uid://dx3favhebj1hq" path="res://assets/sprites/PC Computer - Koumajou Densetsu Scarlet Symphony - Armored Skeleton White.png" id="2_wpm3d"]
 [ext_resource type="AudioStream" uid="uid://cpu18et6fmpbd" path="res://assets/music/slendytubbies - tinky winky scream-yt.savetube.me.mp3" id="3_vjxbe"]
 [ext_resource type="PackedScene" uid="uid://bfvwjfqddctl6" path="res://assets/scenes/Hurtbox.tscn" id="5_sdjan"]
+[ext_resource type="Script" path="res://assets/scripts/Hitbox.gd" id="5_v0cbf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q1cme"]
 atlas = ExtResource("2_wpm3d")
@@ -118,13 +119,28 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_c6vge")
 }],
-"loop": false,
+"loop": true,
 "name": &"chasing",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e0i1d"]
-size = Vector2(49, 58)
+size = Vector2(14, 26)
+
+[sub_resource type="Animation" id="Animation_i3ybx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
 
 [sub_resource type="Animation" id="Animation_vexdt"]
 resource_name = "attack"
@@ -152,21 +168,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
-}
-
-[sub_resource type="Animation" id="Animation_i3ybx"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_drohs"]
@@ -204,6 +205,9 @@ _data = {
 "chasing": SubResource("Animation_drohs")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8fsf"]
+size = Vector2(10.25, 17)
+
 [node name="Diddler" type="Node2D"]
 script = ExtResource("1_0q3oi")
 SPEED = 60
@@ -213,7 +217,7 @@ AGGRO_RANGE = 10
 position = Vector2(0, -1)
 scale = Vector2(0.421616, 0.566706)
 sprite_frames = SubResource("SpriteFrames_3khv2")
-animation = &"chasing"
+animation = &"attack"
 frame = 1
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimatedSprite2D"]
@@ -224,14 +228,21 @@ autoplay = true
 wait_time = 1.985
 
 [node name="Hurtbox" parent="." instance=ExtResource("5_sdjan")]
+ALIGNMENT = "EVIL"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, -23)
+position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_e0i1d")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_tw6ox")
 }
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("5_v0cbf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_b8fsf")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -7,7 +7,7 @@ func _ready():
 	$"../../../Diddler".connect("getExperience", _on_increaseExp)
 
 func _on_increaseExp():
-	value+=115
+	value+=35
 	print("INCREASE EXP")
 	pass
 
@@ -16,5 +16,4 @@ func _process(delta):
 	if value>=100:
 		emit_signal("increaseLevel")
 		value-=100
-	print(value)
 	pass

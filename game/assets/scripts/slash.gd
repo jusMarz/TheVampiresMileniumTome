@@ -48,10 +48,10 @@ func slash(mousePosition : Vector2):
 		
 			
 
-func give_stats():
-	var attack_stats = [DAMAGE,STUN,KNOCKBACK,"Good"] 
-	return attack_stats
 
+func give_stats():
+	var attack_stats = [DAMAGE,STUN,KNOCKBACK,"GOOD"] 
+	return attack_stats
 
 func _on_timer_timeout():
 	collision_shape_2d.set("disabled",true)

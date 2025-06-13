@@ -45,5 +45,5 @@ func _on_body_entered(body):
 				temp = temp - 1
 			amount = amount + 1
 			temp = amount
-	
+
  # Replace with function body.

@@ -16,6 +16,11 @@ var knockback = 0;
 @export var AGGRO_MIN = 200;
 @export var AGGRO_RANGE = 200
 
+@export var DAMAGE = 15
+@export var STUN  = 0.0
+@export var KNOCKBACK = 1
+
+
 @export var coin : PackedScene
 signal getExperience
 
@@ -78,7 +83,6 @@ func _process(delta):
 			if animation_player.current_animation != "attack":
 				animation_player.stop()
 				animation_player.play("attack")
-			#print(animation_player.current_animation_position)
 			if (animation_player.current_animation == "attack") && (animation_player.current_animation_position > .9):
 				state =  State.Idle
 		_:
@@ -95,3 +99,7 @@ func _on_timer_timeout():
 	print("HEY")
 	queue_free()
 	pass # Replace with function body.
+
+func give_stats():
+	var attack_stats = [DAMAGE,STUN,KNOCKBACK,"EVIL"] 
+	return attack_stats

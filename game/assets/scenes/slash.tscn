@@ -53,6 +53,8 @@ size = Vector2(83, 95.7453)
 [node name="Slash" type="Node2D"]
 position = Vector2(0, -1)
 script = ExtResource("1_0ex5l")
+DAMAGE = 15
+STUN = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

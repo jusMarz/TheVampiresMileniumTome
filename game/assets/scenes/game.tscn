@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://mlhxaa1al1wc"]
+[gd_scene load_steps=14 format=3 uid="uid://mlhxaa1al1wc"]
 
 [ext_resource type="PackedScene" uid="uid://byc7mt2xa3qho" path="res://assets/scenes/player.tscn" id="1_ltite"]
 [ext_resource type="PackedScene" uid="uid://d5xen3ar7chq" path="res://assets/scenes/camera_2d.tscn" id="2_lpvbn"]
 [ext_resource type="Texture2D" uid="uid://ds7nwsmvcp878" path="res://assets/sprites/Dungeon_Tileset.png" id="3_rr8hl"]
 [ext_resource type="PackedScene" uid="uid://b42s3fbj1ftwn" path="res://assets/scenes/coin.tscn" id="4_lqmm2"]
+[ext_resource type="Script" path="res://assets/scripts/HealthBar.gd" id="4_yroxu"]
+[ext_resource type="Script" path="res://assets/scripts/ExpBar.gd" id="5_ke5ws"]
 [ext_resource type="PackedScene" uid="uid://cacnl41ok7hlq" path="res://assets/scenes/spawning_area.tscn" id="6_2tijx"]
 [ext_resource type="PackedScene" uid="uid://d3xj1rqwc4g06" path="res://assets/scenes/diddler.tscn" id="6_oygqr"]
 [ext_resource type="Script" path="res://assets/scripts/spawning_area.gd" id="7_cfnce"]
@@ -376,6 +378,38 @@ process_callback = 0
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
+
+[node name="Health" type="ProgressBar" parent="Player/Camera2D"]
+offset_left = -191.0
+offset_top = 77.0
+offset_right = -101.0
+offset_bottom = 104.0
+show_percentage = false
+script = ExtResource("4_yroxu")
+
+[node name="Label" type="Label" parent="Player/Camera2D/Health"]
+layout_mode = 0
+offset_right = 89.0
+offset_bottom = 27.0
+text = "HEALTH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exp" type="ProgressBar" parent="Player/Camera2D"]
+offset_left = -190.0
+offset_top = 57.0
+offset_right = -103.0
+offset_bottom = 75.0
+show_percentage = false
+script = ExtResource("5_ke5ws")
+
+[node name="Label" type="Label" parent="Player/Camera2D/Exp"]
+layout_mode = 0
+offset_top = -3.0
+offset_right = 87.0
+offset_bottom = 20.0
+text = "EXP"
+horizontal_alignment = 1
 
 [node name="Diddler" parent="." instance=ExtResource("6_oygqr")]
 position = Vector2(-81, -101)

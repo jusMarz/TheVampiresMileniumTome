@@ -11,6 +11,7 @@ var selected_Spell = 0
 @export var speed = 100.0
 @export var speed_mult = 1
 @export var health = 100
+@export var max_health = 100
 @export var stun_meter = 0
 @export var knockback = 0
 @export var level = 1
@@ -30,11 +31,13 @@ var facing_right: String ="facing_right"
 @export var slashing = false
 
 func _ready():
-	#$Camera2D/ExpBar.connect("increaseLevel", _on_increaseLevel)
-	pass
+	$Camera2D/Exp.connect("increaseLevel", _on_increaseLevel)
+	
 	
 func _on_increaseLevel():
-	print("SPEED UP")
+	print("LEVELED UP")
+	health = max_health
+	max_health+=15
 	speed_mult+=.5
 	level+=1
 

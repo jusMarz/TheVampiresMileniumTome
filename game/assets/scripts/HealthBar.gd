@@ -8,11 +8,9 @@ func _ready():
 	min_value=0
 	pass # Replace with function body.
 
-
+func _on_increseExp():
+	max_value +=15
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("attack"):
-		value+=10
-	
-	
+	value = player.health
 	pass

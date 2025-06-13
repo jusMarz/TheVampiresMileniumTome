@@ -39,6 +39,7 @@ position = Vector2(-0.5, -6)
 shape = SubResource("CapsuleShape2D_nglft")
 
 [node name="Hurtbox" parent="." instance=ExtResource("6_a84rx")]
+ALIGNMENT = "GOOD"
 
 [node name="Hurtbox" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(-0.5, -15)
