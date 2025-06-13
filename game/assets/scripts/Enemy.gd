@@ -13,8 +13,8 @@ enum State {Idle,Aggresive,Stunned,Dead,Attacking}
 var stun_meter = 0;
 var knockback = 0;
 @export var state : State
-@export var AGGRO_MIN = 100;
-@export var AGGRO_RANGE = 100
+@export var AGGRO_MIN = 200;
+@export var AGGRO_RANGE = 200
 
 @export var coin : PackedScene
 signal getExperience
