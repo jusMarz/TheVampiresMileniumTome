@@ -1,10 +1,10 @@
 [gd_scene load_steps=28 format=3 uid="uid://d3xj1rqwc4g06"]
 
-[ext_resource type="Script" path="res://assets/scripts/Enemy.gd" id="1_0q3oi"]
-[ext_resource type="Texture2D" uid="uid://dx3favhebj1hq" path="res://assets/sprites/PC Computer - Koumajou Densetsu Scarlet Symphony - Armored Skeleton White.png" id="2_wpm3d"]
+[ext_resource type="Script" path="res://assets/scripts/enemy.gd" id="1_wvtgf"]
+[ext_resource type="Texture2D" uid="uid://d0frfxekfssr0" path="res://assets/sprites/PC Computer - Koumajou Densetsu Scarlet Symphony - Armored Skeleton White.png" id="2_wpm3d"]
 [ext_resource type="AudioStream" uid="uid://cpu18et6fmpbd" path="res://assets/music/slendytubbies - tinky winky scream-yt.savetube.me.mp3" id="3_vjxbe"]
 [ext_resource type="PackedScene" uid="uid://bfvwjfqddctl6" path="res://assets/scenes/Hurtbox.tscn" id="5_sdjan"]
-[ext_resource type="Script" path="res://assets/scripts/Hitbox.gd" id="5_v0cbf"]
+[ext_resource type="Script" path="res://assets/scripts/hitbox.gd" id="5_v0cbf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q1cme"]
 atlas = ExtResource("2_wpm3d")
@@ -209,7 +209,7 @@ _data = {
 size = Vector2(10.25, 17)
 
 [node name="Diddler" type="Node2D"]
-script = ExtResource("1_0q3oi")
+script = ExtResource("1_wvtgf")
 SPEED = 60
 AGGRO_RANGE = 10
 

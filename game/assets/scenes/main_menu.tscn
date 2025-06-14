@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d63u7yarcyut"]
 
-[ext_resource type="Script" path="res://assets/scripts/MainMenu.gd" id="1_ty4wp"]
-[ext_resource type="Texture2D" uid="uid://bjj8b0b78gm4" path="res://assets/sprites/The-Millennium-Tomb-5-27-2025.png" id="2_8umq0"]
+[ext_resource type="Script" path="res://assets/scripts/main_menu.gd" id="1_ty4wp"]
+[ext_resource type="Texture2D" uid="uid://ddwqqtnkku1m0" path="res://assets/sprites/The-Millennium-Tomb-5-27-2025.png" id="2_8umq0"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3

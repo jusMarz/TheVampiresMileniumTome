@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://assets/scripts/player.gd" id="1_t023x"]
 [ext_resource type="PackedScene" uid="uid://d2g1xej3ju72g" path="res://assets/scenes/fireball.tscn" id="2_reeqi"]
 [ext_resource type="SpriteFrames" uid="uid://b2bns7scxkcdo" path="res://assets/scenes/node_2d.tres" id="2_wue3j"]
-[ext_resource type="PackedScene" uid="uid://bfvwjfqddctl6" path="res://assets/scenes/hurtbox.tscn" id="6_a84rx"]
+[ext_resource type="PackedScene" uid="uid://bfvwjfqddctl6" path="res://assets/scenes/Hurtbox.tscn" id="6_a84rx"]
 [ext_resource type="PackedScene" uid="uid://ckj6fyot54nf2" path="res://assets/scenes/slash.tscn" id="12_wu12t"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nglft"]
@@ -40,6 +40,7 @@ position = Vector2(-0.5, -6)
 shape = SubResource("CapsuleShape2D_nglft")
 
 [node name="Hurtbox" parent="." instance=ExtResource("6_a84rx")]
+ALIGNMENT = "GOOD"
 
 [node name="Hurtbox" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(-0.5, -15)

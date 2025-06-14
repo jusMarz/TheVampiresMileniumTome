@@ -6,7 +6,7 @@ extends Node2D
 var angle =0
 var shooting = true
 signal shoots
-@export var DAMAGE = 99
+@export var DAMAGE = 25
 @export var STUN  = 0.00
 @export var KNOCKBACK = 1
 
@@ -50,12 +50,12 @@ func _process(delta):
 func _on_area_2d_body_entered(body):
 	var bodies = area_2d.get_overlapping_bodies()
 	var count = 0
-	var playerColide = false
+	var player_colide = false
 	for things in bodies:
 		print(things)
 		if things.to_string().contains("Player"):
 			print("hit player")
-			playerColide = true
+			player_colide = true
 		if things.to_string().contains("TileMap"):
 			print("delete ball")
 			print(bodies.size())

@@ -3,7 +3,7 @@ extends Node2D
 @onready var timer = $Timer
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var collision = $FireBallHitBox/CollisionShape2D
-@onready var mousePos = Vector2(0,0)
+@onready var mouse_pos = Vector2(0,0)
 
 var object_scene = preload("res://assets/scenes/fireball.tscn")
 
@@ -31,7 +31,7 @@ func get_angle_to_target_node():
 func _on_shoots():
 	print("shoot signal recieved")
 	shooting = true
-	mousePos = get_global_mouse_position()
+	mouse_pos = get_global_mouse_position()
 	angle = get_angle_to_target_node()
 	#visible = true
 	#collision.disabled = false

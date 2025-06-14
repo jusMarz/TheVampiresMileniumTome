@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://assets/scripts/fireball_new_script.gd" id="1_wlosi"]
 [ext_resource type="Texture2D" uid="uid://bcuwiashma1vj" path="res://assets/sprites/fireball/fireball000.png" id="2_0pus7"]
-[ext_resource type="Texture2D" uid="uid://c0g5s2u0mc8ye" path="res://assets/sprites/fireball_V_1_1/FB500-1.png" id="3_4qjdr"]
-[ext_resource type="Texture2D" uid="uid://bbio7uqwd4ihn" path="res://assets/sprites/fireball_V_1_1/FB500-2.png" id="4_rfuoa"]
-[ext_resource type="Texture2D" uid="uid://bpj1rh0n2fe" path="res://assets/sprites/fireball_V_1_1/FB500-3.png" id="5_fq4qg"]
-[ext_resource type="Texture2D" uid="uid://cv0h37jfwdhuc" path="res://assets/sprites/fireball_V_1_1/FB500-4.png" id="6_6mm6k"]
-[ext_resource type="Texture2D" uid="uid://dwmh2vsnfuj1i" path="res://assets/sprites/fireball_V_1_1/FB500-5.png" id="7_odekw"]
-[ext_resource type="Texture2D" uid="uid://chkfo5lw6tpib" path="res://assets/sprites/fireball_V_1_1/B500-2.PNG" id="8_g7tm4"]
-[ext_resource type="Texture2D" uid="uid://c0pko83s15sqd" path="res://assets/sprites/fireball_V_1_1/B500-3.PNG" id="9_036ni"]
-[ext_resource type="Texture2D" uid="uid://detndhu3rr33f" path="res://assets/sprites/fireball_V_1_1/B500-4.PNG" id="10_88kmj"]
+[ext_resource type="Texture2D" uid="uid://bll8rea2wxawh" path="res://assets/sprites/fireball_V_1_1/FB500-1.png" id="3_4qjdr"]
+[ext_resource type="Texture2D" uid="uid://wtg27o2s7fk8" path="res://assets/sprites/fireball_V_1_1/FB500-2.png" id="4_rfuoa"]
+[ext_resource type="Texture2D" uid="uid://da7tqo78g8ak8" path="res://assets/sprites/fireball_V_1_1/FB500-3.png" id="5_fq4qg"]
+[ext_resource type="Texture2D" uid="uid://bvatlu7ut0vyp" path="res://assets/sprites/fireball_V_1_1/FB500-4.png" id="6_6mm6k"]
+[ext_resource type="Texture2D" uid="uid://bu8ejl5odb0yf" path="res://assets/sprites/fireball_V_1_1/FB500-5.png" id="7_odekw"]
+[ext_resource type="Texture2D" uid="uid://cbvf8ysomuh30" path="res://assets/sprites/fireball_V_1_1/B500-2.PNG" id="8_g7tm4"]
+[ext_resource type="Texture2D" uid="uid://kt4exxxryafg" path="res://assets/sprites/fireball_V_1_1/B500-3.PNG" id="9_036ni"]
+[ext_resource type="Texture2D" uid="uid://c7oxijwj7lt1e" path="res://assets/sprites/fireball_V_1_1/B500-4.PNG" id="10_88kmj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3ctft"]
 animations = [{

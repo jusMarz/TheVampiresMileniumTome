@@ -17,8 +17,6 @@ func _ready():
 	$"..".connect("slashes", _on_slashes)
 
 
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 
@@ -29,7 +27,6 @@ func _process(delta):
 	pass
 
 func _on_slashes():
-	
 	slash(get_global_mouse_position())
 
 func slash(mousePosition : Vector2):
@@ -43,10 +40,6 @@ func slash(mousePosition : Vector2):
 		animation.play("slash")
 		timer.start(.5)
 	
-	
-	
-		
-			
 
 
 func give_stats():

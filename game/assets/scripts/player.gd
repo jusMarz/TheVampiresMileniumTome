@@ -31,7 +31,7 @@ var facing_right: String ="facing_right"
 @export var slashing = false
 
 func _ready():
-	$Camera2D/Exp.connect("increaseLevel", _on_increaseLevel)
+	$Camera2D/Exp.connect("increase_level", _on_increaseLevel)
 	
 	
 func _on_increaseLevel():
